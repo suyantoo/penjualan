@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kadegori;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Validator;
 
-class KadegoriController extends Controller
+
+class KategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,8 @@ class KadegoriController extends Controller
      */
     public function index()
     {
-        //
+        $kategori = Kategori::all();
+        return view('kategori.index', compact('kategori'));
     }
 
     /**
@@ -35,51 +38,67 @@ class KadegoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama' => 'required|max:255'
+        ]);
+        $kategori = Kategori::create($request->all());
+
+        return redirect('kategori');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Kadegori  $kadegori
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function show(Kadegori $kadegori)
+    public function show(Kategori $kategori)
     {
-        //
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Kadegori  $kadegori
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kadegori $kadegori)
+    public function edit($id)
     {
-        //
+        $kategori = Kategori::find($id);
+        return view('kategori.form', compact('kategori'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Kadegori  $kadegori
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kadegori $kadegori)
+    public function update(Request $request, Kategori $kategori)
     {
-        //
+        $validate = $request->validate([
+            'nama' => 'required|max:255'
+        ]);
+        $kategori->update([
+            'nama' => $request->nama
+        ]);
+
+        return redirect('kategori');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Kadegori  $kadegori
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kadegori $kadegori)
+    public function destroy($id)
     {
-        //
+        $kategori = Kategori::find($id);
+        $kategori->delete();
+
+        return redirect('kategori');
     }
 }
