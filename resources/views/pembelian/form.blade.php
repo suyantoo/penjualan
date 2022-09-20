@@ -4,7 +4,7 @@
     Pembelian
 @endsection
 
-@section('content')
+@section('Content')
 <div class="card mt-3">
   <div class="card-header">
     <div class="card-title">

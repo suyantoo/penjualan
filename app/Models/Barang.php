@@ -10,15 +10,12 @@ use App\Models\Kategori;
 class Barang extends Model
 {
     use HasFactory;
-
     protected $table = 'barang';
-
-    protected $guarded = [];
-
-    public function suplier(){
+    protected $guarded= [];
+    public function suplier (){
         return $this->belongsTo(Suplier::class);
-    }
-    public function kategori(){
+     } 
+     public function kategori(){
         return $this->belongsTo(Kategori::class);
-    }
+     } 
 }

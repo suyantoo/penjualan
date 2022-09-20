@@ -10,13 +10,10 @@ class Kategori extends Model
 {
     use HasFactory;
 
-    //ini ditambahkan jika nama tabel kita tidak jamak (dalam bahasa inggris)
-    protected $table = 'kategori'; 
-
-    // ini jika kita menggunakan Eloquent ORM
-    protected $guarded = [];
-
-    public function barang(){
+    protected $table = 'kategori';
+    protected $guarded= [];
+    
+    public function barang (){
         return $this->belongsToMany(Barang::class);
-    }
+     }   
 }

@@ -29,7 +29,8 @@ class PenjualanController extends Controller
      */
     public function create()
     {
-        //
+        $penjualan = Penjualan::all();
+        return view('penjualan.form',compact('penjualan'));
     }
 
     /**
@@ -38,10 +39,11 @@ class PenjualanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Penjualan $penjualan)
+    public function store(Request $request)
     {
         $validate = $request->validate([
             'barang_id' => 'required',
+            'pembeli_id' => 'required',
             'jumlah'    => 'required|numeric',
             'harga_jual'     => 'required|numeric',
         ]);
@@ -54,12 +56,6 @@ class PenjualanController extends Controller
             'harga_jual' => $request->harga_jual
         ]);
 
-        $id_barang = $request->barang_id;
-        $barang = Barang::find($id_barang);
-        $barang->stok -= $request->jumlah;
-        $barang->update();
-
-        $penjualan->save();
 
         return redirect('penjualan');
     }
@@ -100,6 +96,7 @@ class PenjualanController extends Controller
     {
         $validate = $request->validate([
             'barang_id' => 'required',
+            'pembeli_id' => 'required',
             'jumlah'    => 'required|numeric',
             'harga_jual'     => 'required|numeric',
         ]);
@@ -111,11 +108,6 @@ class PenjualanController extends Controller
             'jumlah' => $request->jumlah,
             'harga_jual' => $request->harga_jual
         ]);
-
-        $id_barang = $request->barang_id;
-        $barang = Barang::find($id_barang);
-        $barang->stok -= $request->jumlah;
-        $barang->update();
 
         return redirect('penjualan');
     }

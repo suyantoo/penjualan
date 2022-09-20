@@ -17,7 +17,7 @@ class BarangController extends Controller
     public function index()
     {
         $barang = Barang::all();
-        return view('barang.index', compact('barang'));
+      return view('barang.index', compact('barang'));
     }
 
     /**
@@ -40,12 +40,12 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'nama' => 'required|max:225',
+        $validate = $request -> validate([
+            'nama' => 'required|max:255|alpha',
             'harga' => 'required|numeric',
             'stok' => 'required|numeric|min:1',
             'suplier_id' => 'required',
-            'kategori_id' => 'required',
+            'kategori_id' => 'required'
         ]);
 
         $barang = Barang::create($request->all());
@@ -71,10 +71,10 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        $suplier = Suplier::all();
-        $kategori = Kategori::all();
+        $suplier=Suplier::all();
+        $kategori=Kategori::all();
         $b = Barang::find($id);
-        return view('barang.edit',compact('b', 'suplier', 'kategori'));
+        return view('barang.edit', compact('b','suplier','kategori'));
     }
 
     /**
@@ -86,12 +86,12 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        $validate = $request->validate([
-            'nama' => 'required|max:225',
+        $validate = $request -> validate([
+            'nama' => 'required|max:255|alpha',
             'harga' => 'required|numeric',
             'stok' => 'required|numeric|min:1',
             'suplier_id' => 'required',
-            'kategori_id' => 'required',
+            'kategori_id' => 'required'
         ]);
 
         $barang->update([
@@ -99,7 +99,7 @@ class BarangController extends Controller
             'harga' => $request->harga,
             'stok' => $request->stok,
             'suplier_id' => $request->suplier_id,
-            'kategori_id' => $request->kategori_id,
+            'kategori_id' => $request->kategori_id
         ]);
         return redirect('barang');
     }
@@ -112,10 +112,9 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        $barang = Barang::find($id);
+        $barang=Barang::find($id);
         $barang->delete();
 
         return redirect('barang');
     }
-    
 }

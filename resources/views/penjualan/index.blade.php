@@ -4,7 +4,7 @@
     Penjualan
 @endsection
 
-@section('content')
+@section('Content')
 <div class="card mt-3">
   <div class="card-header">
     <div class="card-title">
@@ -32,11 +32,12 @@
         <tr>
           <td>{{$loop->iteration}}</td>
           <td>{{$item->barang->nama}}</td>
-          <td>{{! empty($item->pembeli->nama) ? $item->pembeli->nama : ''}}</td>
+          <td>{{$item->pembeli->nama}}</td>
           <td>{{$item->jumlah}}</td>
           <td>{{$item->harga_jual}}</td>
           <td>
             <a href="/penjualan/{{$item->id}}/edit" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> </a>
+            |
             <a href="/penjualan/{{$item->id}}/hapus" class="btn btn-danger btn-sm"> <i class="fa-solid fa-trash"></i> </a>
           </td>
         </tr> 
@@ -51,7 +52,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Penjualan</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -82,13 +83,14 @@
           </div>
 
           <div class="form-group mb-3">
-            <label for="harga">Harga</label>
-            <input type="text" name="harga_jual" id="harga" 
-            class="form-control @error('harga') is-invalid @enderror">
+            <label for="harga_jual">Harga</label>
+            <input type="text" name="harga_jual" id="harga_jual" 
+            class="form-control @error('harga_jual') is-invalid @enderror">
           </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        |
         <button type="submit" class="btn btn-primary">Simpan</button>
       </div>
     </form>

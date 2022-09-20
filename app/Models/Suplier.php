@@ -9,11 +9,11 @@ use App\Models\Barang;
 class Suplier extends Model
 {
     use HasFactory;
-
+    
     protected $table = 'suplier';
-    protected $guarded = [];
-
-    public function barang(){
+    protected $guarded= [];
+    
+    public function barang (){
         return $this->belongsToMany(Barang::class);
-    }
+     }   
 }

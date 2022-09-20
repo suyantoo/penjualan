@@ -13,7 +13,7 @@
           <a class="nav-link" href="/kategori">Kategori</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/suplier">Suplier</a>
+          <a class="nav-link" href="/suplier">Supliyer</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/pembeli">Pembeli</a>
@@ -24,8 +24,6 @@
         <li class="nav-item">
           <a class="nav-link" href="/penjualan">Penjualan</a>
         </li>
-      </ul>
-      
     </div>
   </div>
 </nav>
